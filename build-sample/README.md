@@ -58,6 +58,7 @@ Make sure to:
 
 To release:
 1. Run `mvn release:prepare release:perform -Prelease`
+  - If the command fails, run `mvn release:rollback`
 2. Access https://oss.sonatype.org/#stagingRepositories
 3. Select the repository and click on `Close`
 4. Check the `Activity` tab to check that all validations pass
