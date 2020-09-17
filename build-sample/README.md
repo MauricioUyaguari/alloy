@@ -51,9 +51,9 @@ You must have `DOCKER_USERNAME` and `DOCKER_PASSWORD` environment variables set
 
 ### Release
 Make sure to:
+- Install `gpg` and generate a new key; follow [Sonatype docs](https://central.sonatype.org/pages/working-with-pgp-signatures.html)
 - Perform a successful `mvn deploy` from your workstation prior to a release
   - Check your `settings.xml` and make sure that it [complies with this template](https://github.com/finos/finos-parent-pom/blob/master/settings.xml)
-- Have `gpg2` installed
 - Have the certificate passphrase at hand
 
 To release:
