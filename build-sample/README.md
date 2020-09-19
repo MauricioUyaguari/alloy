@@ -57,16 +57,21 @@ Make sure to:
 - Have the certificate passphrase at hand
 
 To release:
-1. Run `mvn release:prepare release:perform -Prelease`
+1. Make sure you're using Java 11 version; if not, you can [donwload the oracle version](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html) (needs signing in)
+2. Run `mvn release:prepare release:perform -Prelease`
   - If the command fails, run `mvn release:rollback`
-2. Access https://oss.sonatype.org/#stagingRepositories
-3. Select the repository and click on `Close`
-4. Check the `Activity` tab to check that all validations pass
-5. Wait 2 minutes
-6. Click on the `Refresh` button
-7. Click on the `Release` button
+3. Access https://oss.sonatype.org/#stagingRepositories
+4. Select the repository and click on `Close` ; Sonatype will run validations
+  - If validations fail, you'll have to `Drop` the staging repository, manually rollback the `pom.xml` version and re-run the release
+5. Check the `Activity` tab to check that all validations pass
+6. Wait 2 minutes
+7. Click on the `Refresh` button
+8. Click on the `Release` button
 
 For more info, visit [FINOS Wiki](https://finosfoundation.atlassian.net/wiki/spaces/FDX/pages/75530322/Java#Java-Release) and [Sonatype Wiki](https://central.sonatype.org/pages/releasing-the-deployment.html).
+
+#### GitHub and 2FA
+If you have 2FA enabled, the `mvn release` command will fail with `invalid username or password`, trying to access github.com ; to solve it, it's necessary to create a Personal Access Token and use that as password; please read [https://stackoverflow.com/a/34919582](https://stackoverflow.com/a/34919582).
 
 ## Continuous Integration (CI)
 CI is delivered by the [build.yml](.github/build.yml) GitHub Action, which sequentially...
